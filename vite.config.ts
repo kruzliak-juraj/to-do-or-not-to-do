@@ -1,16 +1,18 @@
-import { defineConfig } from "vitest/config"
 import react from "@vitejs/plugin-react"
 
-// https://vitejs.dev/config/
-export default defineConfig({
+export const config = {
   plugins: [react()],
   server: {
     open: true,
   },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "src/setupTests",
-    mockReset: true,
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ["legacy-js-api"],
+        additionalData: `@import "./src/_mantine";`,
+      },
+    },
   },
-})
+}
+
+export default config
